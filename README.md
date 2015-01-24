@@ -68,24 +68,18 @@ vector or list of values to format.
 
 # TODO List
 
-1.  Remove dependency on `Boost::any`
+1. Add formatting information to the parameters
 
-    There's nothing inherently wrong with `Boost::any`, but I'd prefer to not depend on such a
-    large library for one thing. Also the performance of `Boost::any` is known to be poor, so any
-    replacement must be benchmarked against it.
-
-2.  Add formatting information to the parameters
-
-    Formatting information should take the form {0:d} where the colon is the separator between the
-    positional argument and the characters after it define how to emit the matching argument.
+   Formatting information should take the form {0:d} where the colon is the separator between the
+   positional argument and the characters after it define how to emit the matching argument.
 
 # Contributing
 
-1.  Fork it
-2.  Create a feature branch (`git checkout -b new-feature`)
-3.  Commit changes (`git commit -am "Added new feature xyz"`)
-4.  Push the branch (`git push origin new-feature`)
-5.  Create a new pull request.
+1. Fork it
+2. Create a feature branch (`git checkout -b new-feature`)
+3. Commit changes (`git commit -am "Added new feature xyz"`)
+4. Push the branch (`git push origin new-feature`)
+5. Create a new pull request.
 
 # Maintainers
 
@@ -93,5 +87,4 @@ vector or list of values to format.
 
 # License
 
-Advanced String Formatter copyright 2014 Paul Howes and is licensed under the
-[Apache License](LICENSE).
+Advanced String Formatter copyright 2014 Paul Howes and is licensed under the Apache License

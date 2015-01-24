@@ -18,10 +18,14 @@ elseif("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU")
 endif()
 
 #
-# Dependency on Boost 1.55
+# If `git` is installed locally, perform an automatic update of submodules.
 #
-find_package(Boost 1.55 REQUIRED)
-include_directories(Boost_INCLUDE_DIRS)
+find_package(Git)
+if(GIT_FOUND)
+  message("Updating Git submodules with ${GIT_EXECUTABLE} ${GIT_VERSION_STRING}")
+  execute_process(COMMAND ${GIT_EXECUTABLE} submodule init)
+  execute_process(COMMAND ${GIT_EXECUTABLE} submodule update)
+endif(GIT_FOUND)
 
 #
 # Use `make doc` to generate API documentation.
@@ -40,7 +44,10 @@ endif(DOXYGEN_FOUND)
 
 
 # Adds the include directory to the compiler's search path.
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+include_directories(
+  ${CMAKE_CURRENT_SOURCE_DIR}/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/external/any/include
+  )
 
 # Header files installed with the library.
 set(

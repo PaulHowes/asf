@@ -4,7 +4,7 @@
  */
 #pragma once
 
-#include <boost/any.hpp>
+#include <any.hpp>
 #include <sstream>
 #include <string>
 #include <vector>
@@ -18,8 +18,8 @@ namespace asf {
      * @param[in] value Value to add to @p v
      */
     template<typename T>
-    static void unroll(std::vector<boost::any>& v, const T& value) {
-      v.push_back(boost::any(value));
+    static void unroll(std::vector<type::any>& v, const T& value) {
+      v.push_back(type::any(value));
     }
 
     /**
@@ -30,8 +30,8 @@ namespace asf {
      * @param[in] args Remaining variadic template arguments to be processed.
      */
     template<typename T, typename... Args>
-    static void unroll(std::vector<boost::any>& v, const T& value, const Args&... args) {
-      v.push_back(boost::any(value));
+    static void unroll(std::vector<type::any>& v, const T& value, const Args&... args) {
+      v.push_back(type::any(value));
       unroll(v, args...);
     }
 
@@ -41,19 +41,19 @@ namespace asf {
      * @param value Value to convert.
      * @return std::string representation of @p value
      */
-    std::string convert(const boost::any& value) {
+    std::string convert(const type::any& value) {
       std::ostringstream oss;
       if(typeid(double) == value.type()) {
-        oss << boost::any_cast<double>(value);
+        oss << value.as<double>();
       }
-      else if(typeid(const char*) == value.type()) {
-        oss << boost::any_cast<const char*>(value);
+      else if(typeid(char const*) == value.type()) {
+        oss << value.as<char const*>();
       }
       else if(typeid(int) == value.type()) {
-        oss << boost::any_cast<int>(value);
+        oss << value.as<int>();
       }
       else if(typeid(std::string) == value.type()) {
-        oss << boost::any_cast<std::string>(value);
+        oss << value.as<std::string>();
       }
       return oss.str();
     }
@@ -64,7 +64,7 @@ namespace asf {
      * This function is not part of the public API and therefore not intended to be invoked
      * directly from a client.
      */
-    std::string parse(const char* s, std::function<boost::any (const std::string&)> cb) {
+    std::string parse(const char* s, std::function<type::any (const std::string&)> cb) {
       // Builds the returned string.
       std::ostringstream oss;
 

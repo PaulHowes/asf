@@ -3,7 +3,7 @@
 int main() {
   std::string expected("string 1 3.3");
   std::string actual;
-  std::vector<boost::any> args;
+  std::vector<type::any> args;
   args.push_back("string");
   args.push_back(1);
   args.push_back(3.3);

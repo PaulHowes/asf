@@ -30,7 +30,7 @@ namespace asf {
    * to no parameters.
    */
   std::string format(const char* s) {
-    auto error_cb = [](const std::string& arg) -> boost::any {
+    auto error_cb = [](const std::string& arg) -> type::any {
       (void)(arg);
       throw std::invalid_argument("Insufficient arguments to format string.");
     };
@@ -81,7 +81,7 @@ namespace asf {
   template<typename... Args>
   std::string format(const char* s, Args... args) {
     // Unrolls the variadic argument template into a vector of arguments that can be accessed.
-    std::vector<boost::any> a;
+    std::vector<type::any> a;
     asf::internal::unroll(a, args...);
 
     auto cb = [&](const std::string& arg) {
