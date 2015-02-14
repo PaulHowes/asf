@@ -81,7 +81,7 @@ namespace asf {
           }
           else {
             // tok now points to the first character in the argument reference.
-            tok = (char*)(s + 1);
+            tok = const_cast<char*>(s + 1);
           }
         }
         else if(*s == '}') {
@@ -93,7 +93,7 @@ namespace asf {
           }
           else {
             // Use the callback to obtain the argument, then emit it.
-            oss << asf::internal::convert(cb(std::string(tok, (size_t)(s - tok))));
+            oss << asf::internal::convert(cb(std::string(tok, size_t(s - tok))));
             tok = NULL;
           }
         }
