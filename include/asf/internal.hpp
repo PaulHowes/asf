@@ -5,6 +5,7 @@
 #pragma once
 
 #include <any.hpp>
+#include <functional>
 #include <sstream>
 #include <string>
 #include <vector>
